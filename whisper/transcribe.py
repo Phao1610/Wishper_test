@@ -137,6 +137,8 @@ def transcribe(
                     f"Detected language: {LANGUAGES[decode_options['language']].title()}"
                 )
                 print(decode_options['language'])
+                print(decode_options)
+                print(mel_segment)
 
     language: str = decode_options["language"]
     task: str = decode_options.get("task", "transcribe")
