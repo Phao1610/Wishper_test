@@ -343,9 +343,9 @@ def transcribe(
                     start, end, text = segment["start"], segment["end"], segment["text"]
                     line = f"[{format_timestamp(start)} --> {format_timestamp(end)}] {text}"
                     print(make_safe(line))
-                    print(detect(make_safe(line)))
+                    # print(detect(make_safe(line)))
                     # print(segment)
-                    # print({LANGUAGES[decode_options['language']].title()})
+                    print({LANGUAGES[detect(make_safe(line))].title()})
 
             # if a segment is instantaneous or does not contain text, clear it
             for i, segment in enumerate(current_segments):
