@@ -339,9 +339,11 @@ def transcribe(
                         seek = previous_seek + seek_shift
 
             if verbose:
+                print(current_segments)
                 for segment in current_segments:
                     start, end, text = segment["start"], segment["end"], segment["text"]
                     line = f"[{format_timestamp(start)} --> {format_timestamp(end)}] {text}"
+                    print(line)
                     print(make_safe(line))
                     # print(detect(make_safe(line)))
                     # print(segment)
