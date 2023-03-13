@@ -133,6 +133,7 @@ def transcribe(
             mel_segment = pad_or_trim(mel, N_FRAMES).to(model.device).to(dtype)
             _, probs = model.detect_language(mel_segment)
             print(model.detect_language(mel_segment))
+            print(probs)
             decode_options["language"] = max(probs, key=probs.get)
             # if verbose is not None:
             #     print(
@@ -209,7 +210,7 @@ def transcribe(
     ):
         tokens = tokens.tolist()
         text_tokens = [token for token in tokens if token < tokenizer.eot]
-        print(text_tokens)
+        # print(text_tokens)
         return {
             "seek": seek,
             "start": start,
