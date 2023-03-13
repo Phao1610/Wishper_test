@@ -208,6 +208,7 @@ def transcribe(
     ):
         tokens = tokens.tolist()
         text_tokens = [token for token in tokens if token < tokenizer.eot]
+        print(text_tokens)
         return {
             "seek": seek,
             "start": start,
