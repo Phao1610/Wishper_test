@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Optional, Tuple, Union
 import numpy as np
 import torch
 import tqdm
+from langdetect import detect
 
 from .audio import (
     FRAMES_PER_SECOND,
@@ -136,11 +137,11 @@ def transcribe(
                 print(
                     f"Detected language: {LANGUAGES[decode_options['language']].title()}"
                 )
-                print(decode_options['language'])
-                print(decode_options)
-                print(mel_segment)
-                print(mel)
-                print(N_FRAMES)
+                # print(decode_options['language'])
+                # print(decode_options)
+                # print(mel_segment)
+                # print(mel)
+                # print(N_FRAMES)
 
     language: str = decode_options["language"]
     task: str = decode_options.get("task", "transcribe")
@@ -342,7 +343,8 @@ def transcribe(
                     start, end, text = segment["start"], segment["end"], segment["text"]
                     line = f"[{format_timestamp(start)} --> {format_timestamp(end)}] {text}"
                     print(make_safe(line))
-                    print(segment)
+                    print(detect(make_safe(line)))
+                    # print(segment)
                     # print({LANGUAGES[decode_options['language']].title()})
 
             # if a segment is instantaneous or does not contain text, clear it
