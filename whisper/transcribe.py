@@ -133,10 +133,10 @@ def transcribe(
             mel_segment = pad_or_trim(mel, N_FRAMES).to(model.device).to(dtype)
             _, probs = model.detect_language(mel_segment)
             decode_options["language"] = max(probs, key=probs.get)
-            if verbose is not None:
-                print(
-                    f"Detected language: {LANGUAGES[decode_options['language']].title()}"
-                )
+            # if verbose is not None:
+            #     print(
+            #         f"Detected language: {LANGUAGES[decode_options['language']].title()}"
+            #     )
                 # print(decode_options['language'])
                 # print(decode_options)
                 # print(mel_segment)
@@ -345,7 +345,7 @@ def transcribe(
                     print(make_safe(line))
                     # print(detect(make_safe(line)))
                     # print(segment)
-                    print({LANGUAGES[detect(make_safe(line))].title()})
+                    print(LANGUAGES[detect(make_safe(line))].title())
 
             # if a segment is instantaneous or does not contain text, clear it
             for i, segment in enumerate(current_segments):
