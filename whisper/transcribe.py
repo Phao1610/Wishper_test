@@ -136,6 +136,7 @@ def transcribe(
                 print(
                     f"Detected language: {LANGUAGES[decode_options['language']].title()}"
                 )
+                print(decode_options['language'])
 
     language: str = decode_options["language"]
     task: str = decode_options.get("task", "transcribe")
@@ -337,7 +338,7 @@ def transcribe(
                     start, end, text = segment["start"], segment["end"], segment["text"]
                     line = f"[{format_timestamp(start)} --> {format_timestamp(end)}] {text}"
                     print(make_safe(line))
-                    print({LANGUAGES[decode_options['language']].title()})
+                    # print({LANGUAGES[decode_options['language']].title()})
 
             # if a segment is instantaneous or does not contain text, clear it
             for i, segment in enumerate(current_segments):
