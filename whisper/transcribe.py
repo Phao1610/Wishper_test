@@ -135,11 +135,11 @@ def transcribe(
             print(model.detect_language(mel_segment))
             print(probs)
             decode_options["language"] = max(probs, key=probs.get)
-            # if verbose is not None:
+            if verbose is not None:
             #     print(
             #         f"Detected language: {LANGUAGES[decode_options['language']].title()}"
             #     )
-                # print(decode_options['language'])
+                print(decode_options['language'])
                 print(decode_options)
                 print(mel_segment)
                 print(mel)
