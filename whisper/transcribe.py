@@ -139,11 +139,11 @@ def transcribe(
             #     print(
             #         f"Detected language: {LANGUAGES[decode_options['language']].title()}"
             #     )
-                # print(decode_options['language'])
-                # print(decode_options)
-                # print(mel_segment)
-                # print(mel)
-                # print(N_FRAMES)
+                print(decode_options['language'])
+                print(decode_options)
+                print(mel_segment)
+                print(mel)
+                print(N_FRAMES)
 
     language: str = decode_options["language"]
     task: str = decode_options.get("task", "transcribe")
