@@ -132,6 +132,7 @@ def transcribe(
                 )
             mel_segment = pad_or_trim(mel, N_FRAMES).to(model.device).to(dtype)
             _, probs = model.detect_language(mel_segment)
+            print(model.detect_language(mel_segment))
             decode_options["language"] = max(probs, key=probs.get)
             # if verbose is not None:
             #     print(
