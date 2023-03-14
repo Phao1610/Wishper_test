@@ -145,7 +145,8 @@ def transcribe(
     language: str = decode_options["language"]
     task: str = decode_options.get("task", "transcribe")
     tokenizer = get_tokenizer(model.is_multilingual, language=language, task=task)
-
+    print('1')
+    print(tokenizer)
     if word_timestamps and task == "translate":
         warnings.warn("Word-level timestamps on translations may not be reliable.")
 
@@ -205,8 +206,14 @@ def transcribe(
     def new_segment(
         *, start: float, end: float, tokens: torch.Tensor, result: DecodingResult
     ):
+        print('2')
+        print(tokens)
         tokens = tokens.tolist()
+        print('3')
+        print(tokens)
         text_tokens = [token for token in tokens if token < tokenizer.eot]
+        print('4')
+        print(text_tokens)
         print(tokenizer.decode(text_tokens))
         # print(text_tokens)
         return {
