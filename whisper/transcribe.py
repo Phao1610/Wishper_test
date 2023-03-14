@@ -235,9 +235,13 @@ def transcribe(
         while seek < content_frames:
             time_offset = float(seek * HOP_LENGTH / SAMPLE_RATE)
             mel_segment = mel[:, seek : seek + N_FRAMES]
+            print('2')
+            print(mel_segment)
             segment_size = min(N_FRAMES, content_frames - seek)
             segment_duration = segment_size * HOP_LENGTH / SAMPLE_RATE
             mel_segment = pad_or_trim(mel_segment, N_FRAMES).to(model.device).to(dtype)
+            print('3')
+            print(mel_segment)
 
             decode_options["prompt"] = all_tokens[prompt_reset_since:]
             result: DecodingResult = decode_with_fallback(mel_segment)
@@ -273,8 +277,8 @@ def transcribe(
 
                 last_slice = 0
                 for current_slice in slices:
-                    print('0')
-                    print(last_slice,'   ',current_slice)
+                    # print('0')
+                    # print(last_slice,'   ',current_slice)
                     sliced_tokens = tokens[last_slice:current_slice]
                     print('1')
                     print(tokens)
@@ -292,11 +296,11 @@ def transcribe(
                             result=result,
                         )
                     )
-                    print('2')
-                    print(sliced_tokens)
+                    # print('2')
+                    # print(sliced_tokens)
                     last_slice = current_slice
-                    print('4')
-                    print(current_slice)
+                    # print('4')
+                    # print(current_slice)
 
                 if single_timestamp_ending:
                     # single timestamp at the end means no speech after the last timestamp.
