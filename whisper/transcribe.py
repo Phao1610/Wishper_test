@@ -273,8 +273,8 @@ def transcribe(
 
                 last_slice = 0
                 for current_slice in slices:
-                    # print('1')
-                    # print(sliced_tokens)
+                    print('0')
+                    print(last_slice,'   ',current_slice)
                     sliced_tokens = tokens[last_slice:current_slice]
                     print('1')
                     print(tokens)
