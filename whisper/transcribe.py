@@ -136,17 +136,17 @@ def transcribe(
                 print(
                     f"Detected language: {LANGUAGES[decode_options['language']].title()}"
                 )
-                print(decode_options['language'])
-                print(decode_options)
-                print(mel_segment)
+                # print(decode_options['language'])
+                # print(decode_options)
+                # print(mel_segment)
                 print(mel)
-                print(N_FRAMES)
+                # print(N_FRAMES)
 
     language: str = decode_options["language"]
     task: str = decode_options.get("task", "transcribe")
     tokenizer = get_tokenizer(model.is_multilingual, language=language, task=task)
-    print('1')
-    print(tokenizer)
+    # print('1')
+    # print(tokenizer)
     if word_timestamps and task == "translate":
         warnings.warn("Word-level timestamps on translations may not be reliable.")
 
@@ -206,15 +206,15 @@ def transcribe(
     def new_segment(
         *, start: float, end: float, tokens: torch.Tensor, result: DecodingResult
     ):
-        print('2')
-        print(tokens)
+        # print('2')
+        # print(tokens)
         tokens = tokens.tolist()
         print('3')
         print(tokens)
         text_tokens = [token for token in tokens if token < tokenizer.eot]
-        print('4')
-        print(text_tokens)
-        print(tokenizer.decode(text_tokens))
+        # print('4')
+        # print(text_tokens)
+        # print(tokenizer.decode(text_tokens))
         # print(text_tokens)
         return {
             "seek": seek,
@@ -273,7 +273,11 @@ def transcribe(
 
                 last_slice = 0
                 for current_slice in slices:
+                    print('1')
+                    print(sliced_tokens)
                     sliced_tokens = tokens[last_slice:current_slice]
+                    print('2')
+                    print(tokens)
                     start_timestamp_pos = (
                         sliced_tokens[0].item() - tokenizer.timestamp_begin
                     )
