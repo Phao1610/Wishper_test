@@ -292,7 +292,11 @@ def transcribe(
                             result=result,
                         )
                     )
+                    print('2')
+                    print(sliced_tokens)
                     last_slice = current_slice
+                    print('4')
+                    print(current_slice)
 
                 if single_timestamp_ending:
                     # single timestamp at the end means no speech after the last timestamp.
