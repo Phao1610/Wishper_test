@@ -273,10 +273,10 @@ def transcribe(
 
                 last_slice = 0
                 for current_slice in slices:
-                    print('1')
-                    print(sliced_tokens)
+                    # print('1')
+                    # print(sliced_tokens)
                     sliced_tokens = tokens[last_slice:current_slice]
-                    print('2')
+                    print('1')
                     print(tokens)
                     start_timestamp_pos = (
                         sliced_tokens[0].item() - tokenizer.timestamp_begin
