@@ -107,8 +107,6 @@ def transcribe(
     A dictionary containing the resulting text ("text") and segment-level details ("segments"), and
     the spoken language ("language"), which is detected when `decode_options["language"]` is None.
     """
-    print('1')
-    print(decode_options)
     dtype = torch.float16 if decode_options.get("fp16", True) else torch.float32
     if model.device == torch.device("cpu"):
         if torch.cuda.is_available():
@@ -116,17 +114,11 @@ def transcribe(
         if dtype == torch.float16:
             warnings.warn("FP16 is not supported on CPU; using FP32 instead")
             dtype = torch.float32
-    print('2')
-    print(decode_options)
     if dtype == torch.float32:
         decode_options["fp16"] = False
-    print('3')
-    print(decode_options)
     # Pad 30-seconds of silence to the input audio, for slicing
     mel = log_mel_spectrogram(audio, padding=N_SAMPLES)
     content_frames = mel.shape[-1] - N_FRAMES
-    print('4')
-    print(decode_options)
     if decode_options.get("language", None) is None:
         if not model.is_multilingual:
             decode_options["language"] = "en"
@@ -140,10 +132,10 @@ def transcribe(
             print(model.detect_language(mel_segment))
             print(probs)
             decode_options["language"] = max(probs, key=probs.get)
-            # if verbose is not None:
-            #     print(
-            #         f"Detected language: {LANGUAGES[decode_options['language']].title()}"
-            #     )
+            if verbose is not None:
+                print(
+                    f"Detected language: {LANGUAGES[decode_options['language']].title()}"
+                )
                 # print(decode_options['language'])
                 # print(decode_options)
                 # print(mel_segment)
@@ -215,6 +207,7 @@ def transcribe(
     ):
         tokens = tokens.tolist()
         text_tokens = [token for token in tokens if token < tokenizer.eot]
+        print(tokenizer.decode(text_tokens))
         # print(text_tokens)
         return {
             "seek": seek,
